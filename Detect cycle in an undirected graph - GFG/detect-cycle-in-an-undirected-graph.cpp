@@ -30,6 +30,17 @@ class Solution {
         return false;
     }
     
+    bool checkCycleDfs(int i, int par, vector<int> adj[], vector<int> &vis){
+        vis[i] = 1;
+        for(auto it: adj[i]){
+            if(!vis[it]){
+                vis[it] = 1;
+                if(checkCycleDfs(it, i, adj, vis)) return true;
+            }else if(par != it) return true;
+        }
+        return false;
+    }
+    
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
         
@@ -37,7 +48,7 @@ class Solution {
         
         for(int i=0;i<V;i++){
             if(!vis[i]){
-                if(checkCycle(i, adj, vis)) return true;
+                if(checkCycleDfs(i, -1, adj, vis)) return true;
             }
         }
         
