@@ -1,17 +1,14 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        vector<int> v1(200, 0);
-        vector<int> v2(200, 0);
+       map<char, int> m1, m2;
+       if(s.size() != t.size()) return false;
+       for(int i=0;i<s.size();i++){
+            if(m1.find(s[i]) == m1.end()) m1[s[i]] = i;
+            if(m2.find(t[i]) == m2.end()) m2[t[i]] = i;
 
-        if(s.size() != t.size()) return false;
-
-        for(int i=0; i<s.size(); i++){
-            if(v1[s[i]] != v2[t[i]]) return false;
-
-            v1[s[i]] = i+1;
-            v2[t[i]] = i+1;
-        }
-        return true;
+            if(m1[s[i]] != m2[t[i]]) return false;
+       }
+       return true;
     }
 };
