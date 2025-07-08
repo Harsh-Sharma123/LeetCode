@@ -7,9 +7,8 @@ public:
             bool check = false;
             for(int j=0;j<strs.size();j++){
                 char temp = strs[j][i];
-                if(temp == c){
-                    check = true;
-                }else{
+                if(temp == c) check = true;
+                else {
                     check = false;
                     break;
                 }
@@ -17,7 +16,7 @@ public:
             if(check){
                 ans += c;
             }else{
-                return ans;
+                break;
             }
         }
         return ans;
